@@ -9,7 +9,7 @@ public interface ClientConstants {
     /**
      * 接続ウィンドウのキャプション文字列
      */
-    final Object ClientVersionString = "OP rev44";
+    final Object ClientVersionString = "OP rev45";
     final String ConnectionWindowCaption = "東方萃夢想 Alt Lobby Client ("
             + ClientVersionString + ")";
     final String SettingWindowCaption = "設定";

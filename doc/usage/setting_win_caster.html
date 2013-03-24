@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>東方萃夢想 Alt Lobby System (仮) > 操作説明 > 設定ウィンドウ > Caster</title>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <meta name="description" 
+content="同人サークル「黄昏フロンティア」様と「上海アリス幻樂団」様が製作された対戦型格闘ゲーム「東方萃夢想 〜 Immaterial and Missing Power」のネット対戦を支援するツール（いわゆるロビーシステム）Alt Lobby System(仮)の操作説明ページです。
+このページでは、特に設定ウィンドウのCaster設定について説明します。" />
+  <meta name="keywords" content="東方萃夢想,ロビー,ネット対戦,ツール,操作説明,設定ウィンドウ,Caster設定" />
+  <link rel="INDEX" href="./index.html" />
+ </head>
+ <body>
+  <h1>東方萃夢想 Alt Lobby System (仮) 東方萃夢想ロビーシステム(b10) 操作説明 設定ウィンドウ Caster設定</h1>
+   <h2>はじめに</h2>
+    <p>このドキュメントは、東方萃夢想 Alt Lobby Systemのテスト版の操作説明を簡略にまとめたものです。</p>
+	<p>アプリケーションと同様に本ドキュメントもテスト版であり、機能の説明やスクリーンショットなどは予告なく変更されることがあります。</p>
+	
+   <h2>設定ウィンドウ Caster設定</h2>
+    <p><img src="./screen_shot/setting_shot02.png" /></p>
+
+   <h2>操作説明</h2>
+    <dl>
+	 <dt>(1)Casterのパス</dt>
+	  <dd>Casterのパスをフルパスで指定します。(2)の[...]ボタンを押すとファイル選択ダイアログが開きます。</dd>
+	  <dd>th075Caster.exeまたはCowCaster.exeが選択可能です。</dd>
+	 <dt>(3)Casterの待ちうけポート番号</dt>
+	  <dd>Casterの待ちうけポート番号を半角数値で入力します。(デフォルト値は7500)</dd>
+	  <dd>対戦時には、ここで指定したポートに接続されます。ファイアウォール内の場合、ポートを開放する必要があります。</dd>
+	 <dt>(3)募集文</dt>
+	  <dd>全ユーザーに公開される募集文です。(空にすることはできません、スペースは可能)</dd>
+	  <dd>1行募集文と異なり、こちらの募集文はテーブルには表示されず、選択したときにのみ表示されます。</dd>
+	 <dt>(4)OK</dt>
+	  <dd>設定を保存して、設定ウィンドウを閉じます。</dd>
+	 <dt>(5)CANCEL</dt>
+	  <dd>設定を保存せず、設定ウィンドウを閉じます。</dd>
+	</dl>
+	
+   <h2>Caster側に必要な設定</h2>
+    <p>東方萃夢想 Alt Lobby System (仮) は内部的にCasterを呼び出し操作するため、Caster側に少しの設定が必要になります。</p>
+	<h3>Caster,CowCaster,RollCaster共通</h3>
+	<pre>[PORT]
+onoff = 1
+myPort = 7500
+enPort = 7500</pre>
+    <p>起動時などのポート番号入力を省略するかどうかのフラグです。0にすると、毎回入力待ちになります。入力待ちになっているかのチェックを行っていないため、テスト版では1にしてください。</p>
+	<p>myPort,enPortはそれぞれ自分と相手のPortです。myPortには(2)と同じ待ちうけポート番号を入力してください。</p>
+
+	
+   <h2>リンク</h2>
+    <dl>
+	 <dt>接続ウィンドウ</dt>
+	  <dd><a href="./connect_win.html">http://th075altlobby.dip.jp/usage/connect_win.html</a></dd>
+	 <dt>メインウィンドウ</dt>
+	  <dd><a href="./main_win.html">http://th075altlobby.dip.jp/usage/main_win.html</a></dd>
+	 <dt>設定ウィンドウ クライアント設定</dt>
+	  <dd><a href="./setting_win_client.html">http://th075altlobby.dip.jp/usage/setting_win_client.html</a></dd>
+	 <dt>設定ウィンドウ Caster設定</dt>
+	  <dd><a href="./setting_win_caster.html">http://th075altlobby.dip.jp/usage/setting_win_caster.html</a></dd>
+	 <dt>設定ウィンドウ IM(1)設定</dt>
+ 	  <dd><a href="./setting_win_im1.html">http://th075altlobby.dip.jp/usage/setting_win_im1.html</a></dd>
+	 <dt>設定ウィンドウ IM(2)設定</dt>
+	  <dd><a href="./setting_win_im2.html">http://th075altlobby.dip.jp/usage/setting_win_im2.html</a></dd>
+	 <dt>東方萃夢想 Alt Lobby System (仮) 東方萃夢想ロビーシステム(b10) 操作説明</dt>
+	  <dd><a href="http://th075altlobby.dip.jp/usage/">http://th075altlobby.dip.jp/usage/</a></dd>
+	 </dl>
+	 <address>
+	  最終更新 : 2010-02-19 1:00<br />
+	  作成日時 : 2010-02-19 1:00<br />
+	  サイトトップ : <a href="./">http://th075altlobby.dip.jp/</a>
+	 </address>
+ </body>
+</html>

@@ -1,0 +1,30 @@
+START
+How to Play
+Let's start
+This provides you what is needed for you to play toho-suimusou on a public using th075AltLobbyClient.
+1. First, you need to download and extract a client(zip archive).
+http://th075altlobby.dip.jp/archive/th075altlobbyclient.zip (Win32 + JRE 1.6 or later)
+
+2. Then, you need to change configuration settings.
+Minimal Configuration:
+Push "Setting" button and select caster panel.
+Then set caster path(choose th075caster.txt).
+Input caster's myPort(waiting port number).
+OK
+
+3. Connect to a server
+th075altlobby.dip.jp:9555 is general server(public).
+
+New to th075AltLobbyClient
+
+Usage
+1. Set caster path
+
+There are two way to play "suimusou".
+First way, connect to gathering player which is "募集中".
+1. Select gathering player(Left-click) from left panel(listed players).
+2. Right-click and choose "対戦する".
+3. If shown input panel, select a number. It means "caster's buffer margin".(May be selected recommend value)
+
+The other way, you are gathering player(host).
+1. If you need NAT, you set 

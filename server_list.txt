@@ -1,0 +1,2 @@
+th075altlobby.dip.jp(th075altlobby.dip.jp:9555)
+localhost(localhost:9555)

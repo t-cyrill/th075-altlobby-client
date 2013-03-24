@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>東方萃夢想 Alt Lobby System (仮) > 操作説明 > 設定ウィンドウ > IM(2)</title>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <meta name="description" 
+content="同人サークル「黄昏フロンティア」様と「上海アリス幻樂団」様が製作された対戦型格闘ゲーム「東方萃夢想 〜 Immaterial and Missing Power」のネット対戦を支援するツール（いわゆるロビーシステム）Alt Lobby System(仮)の操作説明ページです。
+このページでは、特に設定ウィンドウのIM(2)設定について説明します。" />
+  <meta name="keywords" content="東方萃夢想,ロビー,ネット対戦,ツール,操作説明,設定ウィンドウ,IM(2)設定" />
+  <link rel="INDEX" href="./index.html" />
+ </head>
+ <body>
+  <h1>東方萃夢想 Alt Lobby System 東方萃夢想ロビーシステム(RC4) 操作説明 設定ウィンドウ IM(2)設定</h1>
+   <h2>はじめに</h2>
+    <p>このドキュメントは、東方萃夢想 Alt Lobby Systemのテスト版の操作説明を簡略にまとめたものです。</p>
+	<p>アプリケーションと同様に本ドキュメントもテスト版であり、機能の説明やスクリーンショットなどは予告なく変更されることがあります。</p>
+	
+   <h2>設定ウィンドウ IM(2)設定</h2>
+    <p><img src="./screen_shot/setting_shot04.png" /></p>
+
+   <h2>操作説明</h2>
+    <dl>
+	 <dt>(1)IMを自動的に保存する</dt>
+	  <dd>チェックを入れると、届いたIMを自動的にyyyy-mm-dd.txtの形式で保存します。</dd>
+	  <dd>日付変更時に自動的にlotateされます。</dd>
+	  <dd>出力を開きっぱなしのまま、バッファリングしつつ書き込むので、異常終了時には一部のデータが失われることがあります。</dd>
+	 <dt>(2)IMの表示件数</dt>
+	  <dd>右上のIM表示部に表示されるIMの最大件数を指定します。</dd>
+      <dd>この数値を超える場合、古いメッセージから削除されていきます。</dd>
+      <dd>0を指定すると、無制限となり、メモリが許す限り保持します。</dd>
+	 <dt>(3)少し前のIMを読む</dt>
+	  <dd>右の入力エリアに入れた数値の件数だけ前のIMをサーバーにリクエストします。</dd>
+      <dd>これにより、接続時にそれまでの流れを知ることができます。</dd>
+      <dd>入力できる値は0～30で、30より大きな値や0より小さい値は制限されます。</dd>
+      <dd>0を指定した場合、読み込みは行われません。</dd>
+	 <dt>(4)IMの許可設定</dt>
+	  <dd>常に許可：いつでもIMを受信できます</dd>
+      <dd>対戦中のみ拒否：対戦中にIMを送れないようにします。</dd>
+      <dd>常に拒否：ユーザー指定IMを受信できないようにします。</dd>
+	 <dt>(5)IM送信ショートカットキー</dt>
+	  <dd>IMエリアにて、ここで設定したキーを押したときにIMが送信されるようになります。</dd>
+      <dd>EnterかShift+Enterのいずれかを選択できます。</dd>
+	 <dt>(6)OK</dt>
+	  <dd>設定を保存して、設定ウィンドウを閉じます。</dd>
+	 <dt>(7)CANCEL</dt>
+	  <dd>設定を保存せず、設定ウィンドウを閉じます。</dd>
+	</dl>
+
+	
+   <h2>リンク</h2>
+    <dl>
+	 <dt>接続ウィンドウ</dt>
+	  <dd><a href="./connect_win.html">http://th075altlobby.dip.jp/usage/connect_win.html</a></dd>
+	 <dt>メインウィンドウ</dt>
+	  <dd><a href="./main_win.html">http://th075altlobby.dip.jp/usage/main_win.html</a></dd>
+	 <dt>設定ウィンドウ クライアント設定</dt>
+	  <dd><a href="./setting_win_client.html">http://th075altlobby.dip.jp/usage/setting_win_client.html</a></dd>
+	 <dt>設定ウィンドウ Caster設定</dt>
+	  <dd><a href="./setting_win_caster.html">http://th075altlobby.dip.jp/usage/setting_win_caster.html</a></dd>
+	 <dt>設定ウィンドウ IM(1)設定</dt>
+ 	  <dd><a href="./setting_win_im1.html">http://th075altlobby.dip.jp/usage/setting_win_im1.html</a></dd>
+	 <dt>設定ウィンドウ IM(2)設定</dt>
+	  <dd><a href="./setting_win_im2.html">http://th075altlobby.dip.jp/usage/setting_win_im2.html</a></dd>
+	 <dt>東方萃夢想 Alt Lobby System (仮) 東方萃夢想ロビーシステム(b10) 操作説明</dt>
+	  <dd><a href="http://th075altlobby.dip.jp/usage/">http://th075altlobby.dip.jp/usage/</a></dd>
+	 </dl>
+	 <address>
+	  最終更新 : 2010-02-19 1:00<br />
+	  作成日時 : 2010-02-19 1:00<br />
+	  サイトトップ : <a href="./">http://th075altlobby.dip.jp/</a>
+	 </address>
+ </body>
+</html>

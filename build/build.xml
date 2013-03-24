@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project AltLobbyGUIClient" basedir="..">
+ <target name="compile">
+  <mkdir dir="bin" />
+  <javac srcdir="src" destdir="bin" />
+ </target>
+ <target name="create_run_jar">
+  <mkdir dir="releases" />
+  <jar destfile="releases/th075altlobbyclient.jar" filesetmanifest="mergewithoutmain">
+   <manifest>
+    <attribute name="Main-Class" value="jp.dip.th075altlobby.imo.Application.GUIClientMain"/>
+    <attribute name="Class-Path" value="."/>
+   </manifest>
+   <fileset dir="bin" />
+   <fileset file="icon/icon.png" />
+   <fileset file="lang/th075altlobbyclient.xml" />
+  </jar>
+ </target>
+</project>

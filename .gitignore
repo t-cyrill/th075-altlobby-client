@@ -1,3 +1,4 @@
+bin/
 *.class
 
 # Package Files #
@@ -9,3 +10,4 @@
 .project
 .classpath
 .settings
+

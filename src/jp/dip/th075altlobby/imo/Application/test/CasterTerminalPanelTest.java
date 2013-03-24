@@ -12,37 +12,41 @@ import jp.dip.th075altlobby.imo.ProcessAdapter.CallBackRunnable;
 import jp.dip.th075altlobby.imo.Window.MainWindow.CasterTerminalPanel;
 
 public class CasterTerminalPanelTest extends JFrame {
-	/**
+    /**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private final static Logger logger = Logger.getLogger("jp.dip.th075altlobby.imo.Application");
-	public CasterTerminalPanelTest() {
-		setTitle("CasterTerminalPanelTest");
-		setSize(320,240);
-		setLocationRelativeTo(null);
-		final CasterTerminalPanel panel = new CasterTerminalPanel(new CallBackRunnable(){
-			@Override
-			public void run(String s) {
-				logger.log(Level.INFO, s);
-			}
-		});
-		add(panel);
-		setVisible(true);
+    private final static Logger logger = Logger
+            .getLogger("jp.dip.th075altlobby.imo.Application");
 
-		ScheduledExecutorService exs = Executors.newScheduledThreadPool(5);
-		exs.scheduleAtFixedRate(new Runnable() {
-			int i = 0;
-			@Override
-			public void run() {
-				i++;
-				panel.append(i + "回目の呼び出し", true);
-			}
-		}, 0, 1, TimeUnit.SECONDS);
-	}
+    public CasterTerminalPanelTest() {
+        setTitle("CasterTerminalPanelTest");
+        setSize(320, 240);
+        setLocationRelativeTo(null);
+        final CasterTerminalPanel panel = new CasterTerminalPanel(
+                new CallBackRunnable() {
+                    @Override
+                    public void run(String s) {
+                        logger.log(Level.INFO, s);
+                    }
+                });
+        add(panel);
+        setVisible(true);
 
-	public static void main(String[] args) {
-		new CasterTerminalPanelTest();
-	}
+        ScheduledExecutorService exs = Executors.newScheduledThreadPool(5);
+        exs.scheduleAtFixedRate(new Runnable() {
+            int i = 0;
+
+            @Override
+            public void run() {
+                i++;
+                panel.append(i + "回目の呼び出し", true);
+            }
+        }, 0, 1, TimeUnit.SECONDS);
+    }
+
+    public static void main(String[] args) {
+        new CasterTerminalPanelTest();
+    }
 }

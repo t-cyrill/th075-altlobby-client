@@ -7,24 +7,27 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * <h1>RunnableCallActionListener</h1>
- * <h2>Runnableを呼び出すActionListener</h2>
- * <p>内部でRunnableを呼び出すActionListenerです。</p>
- * <p>ExecutorServiceを利用し、内部でスレッドを生成します。イベントは別スレッドで処理されます。</p>
- *
+ * <h1>RunnableCallActionListener</h1> <h2>Runnableを呼び出すActionListener</h2>
+ * <p>
+ * 内部でRunnableを呼び出すActionListenerです。
+ * </p>
+ * <p>
+ * ExecutorServiceを利用し、内部でスレッドを生成します。イベントは別スレッドで処理されます。
+ * </p>
+ * 
  * @author Cyrill
  */
 public class RunnableCallActionListener implements ActionListener {
-	private Runnable data;
+    private Runnable data;
 
-	public RunnableCallActionListener(Runnable r) {
-		this.data = r;
-	}
+    public RunnableCallActionListener(Runnable r) {
+        this.data = r;
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		ExecutorService exs = Executors.newCachedThreadPool();
-		exs.execute(data);
-		exs.shutdown();
-	}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        ExecutorService exs = Executors.newCachedThreadPool();
+        exs.execute(data);
+        exs.shutdown();
+    }
 }

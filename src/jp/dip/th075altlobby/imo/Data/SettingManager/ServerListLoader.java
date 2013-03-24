@@ -7,22 +7,23 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 
 public class ServerListLoader {
-	public static String[] load(String file) throws FileNotFoundException, IOException {
-		BufferedReader br = new BufferedReader(new FileReader(file));
-		ArrayDeque<String> queue = new ArrayDeque<String>();
+    public static String[] load(String file) throws FileNotFoundException,
+            IOException {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        ArrayDeque<String> queue = new ArrayDeque<String>();
 
-		try {
-			while (true) {
-				String line = br.readLine();
-				if(line == null)
-					break;
-				if(line != "" && line.matches(".+\\(.+:\\d+\\)"))
-					queue.add(line);
-			}
-		} finally {
-			br.close();
-		}
+        try {
+            while (true) {
+                String line = br.readLine();
+                if (line == null)
+                    break;
+                if (line != "" && line.matches(".+\\(.+:\\d+\\)"))
+                    queue.add(line);
+            }
+        } finally {
+            br.close();
+        }
 
-		return queue.toArray(new String[0]);
-	}
+        return queue.toArray(new String[0]);
+    }
 }

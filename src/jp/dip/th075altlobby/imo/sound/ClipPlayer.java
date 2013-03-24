@@ -14,68 +14,81 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class ClipPlayer implements LineListener {
-	private Clip clip;
-	/**
-	 * ファイルを指定してプレイヤーのインスタンスを生成します。
-	 * @param filename ロードする音楽ファイル
-	 * @throws LineUnavailableException ラインが利用できないとき
-	 * @throws UnsupportedAudioFileException サポートされないファイル形式の場合
-	 * @throws IOException その他の入出力例外が発生した場合
-	 */
-	public ClipPlayer(String file_path) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-		load(file_path);
-	}
+    private Clip clip;
 
-	/**
-	 * 音楽ファイルをロードします。
-	 * @param filename ロードする音楽ファイル
-	 * @throws LineUnavailableException ラインが利用できないとき
-	 * @throws UnsupportedAudioFileException サポートされないファイル形式の場合
-	 * @throws IOException その他の入出力例外が発生した場合
-	 */
-	public void load(String filename) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-		// オーディオストリームを開く
-		AudioInputStream stream = AudioSystem.getAudioInputStream(new File(filename));
+    /**
+     * ファイルを指定してプレイヤーのインスタンスを生成します。
+     * 
+     * @param filename
+     *            ロードする音楽ファイル
+     * @throws LineUnavailableException
+     *             ラインが利用できないとき
+     * @throws UnsupportedAudioFileException
+     *             サポートされないファイル形式の場合
+     * @throws IOException
+     *             その他の入出力例外が発生した場合
+     */
+    public ClipPlayer(String file_path) throws LineUnavailableException,
+            UnsupportedAudioFileException, IOException {
+        load(file_path);
+    }
 
-		AudioFormat format = stream.getFormat();
-		// ライン情報を取得
-		DataLine.Info info = new DataLine.Info(Clip.class, format);
+    /**
+     * 音楽ファイルをロードします。
+     * 
+     * @param filename
+     *            ロードする音楽ファイル
+     * @throws LineUnavailableException
+     *             ラインが利用できないとき
+     * @throws UnsupportedAudioFileException
+     *             サポートされないファイル形式の場合
+     * @throws IOException
+     *             その他の入出力例外が発生した場合
+     */
+    public void load(String filename) throws LineUnavailableException,
+            UnsupportedAudioFileException, IOException {
+        // オーディオストリームを開く
+        AudioInputStream stream = AudioSystem.getAudioInputStream(new File(
+                filename));
 
-		// 空のクリップを作成
-		clip = (Clip) AudioSystem.getLine(info);
+        AudioFormat format = stream.getFormat();
+        // ライン情報を取得
+        DataLine.Info info = new DataLine.Info(Clip.class, format);
 
-		// クリップのイベントを監視
-		clip.addLineListener(this);
+        // 空のクリップを作成
+        clip = (Clip) AudioSystem.getLine(info);
 
-		// オーディオストリームをクリップとして開く
-		clip.open(stream);
+        // クリップのイベントを監視
+        clip.addLineListener(this);
 
-		// ストリームを閉じる
-		stream.close();
-	}
+        // オーディオストリームをクリップとして開く
+        clip.open(stream);
 
-	/**
-	 * このプレイヤーの音を再生します。
-	 */
-	public void play() {
-		clip.start();
-	}
+        // ストリームを閉じる
+        stream.close();
+    }
 
-	@Override
-	public void update(LineEvent event) {
-		// ストップか最後まで再生された場合リソースを開放する
-		if (event.getType() == LineEvent.Type.STOP) {
-			Clip clip = (Clip) event.getSource();
-			clip.stop();
-			clip.close();
-		}
-	}
+    /**
+     * このプレイヤーの音を再生します。
+     */
+    public void play() {
+        clip.start();
+    }
 
-	/**
-	 * このプレイヤーを閉じます。
-	 * インスタンスを生成した場合、参照が解除されるためにも、不要になる前に必ず呼び出す必要があります。
-	 */
-	public void close(){
-		clip.close();
-	}
+    @Override
+    public void update(LineEvent event) {
+        // ストップか最後まで再生された場合リソースを開放する
+        if (event.getType() == LineEvent.Type.STOP) {
+            Clip clip = (Clip) event.getSource();
+            clip.stop();
+            clip.close();
+        }
+    }
+
+    /**
+     * このプレイヤーを閉じます。 インスタンスを生成した場合、参照が解除されるためにも、不要になる前に必ず呼び出す必要があります。
+     */
+    public void close() {
+        clip.close();
+    }
 }

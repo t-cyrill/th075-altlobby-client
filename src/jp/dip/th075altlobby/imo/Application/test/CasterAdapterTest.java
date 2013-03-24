@@ -9,27 +9,28 @@ import jp.dip.th075altlobby.imo.ProcessAdapter.ProcessAdapter;
 import jp.dip.th075altlobby.imo.ProcessAdapter.ProcessAdapterInterface;
 
 public class CasterAdapterTest {
-	public static void main(String[] args) throws IOException {
-		ProcessAdapterInterface caster = new ProcessAdapter(new CallBackRunnable() {
-			@Override
-			public void run(String s) {
-				System.out.println(s);
-			}
-		}, new Runnable() {
+    public static void main(String[] args) throws IOException {
+        ProcessAdapterInterface caster = new ProcessAdapter(
+                new CallBackRunnable() {
+                    @Override
+                    public void run(String s) {
+                        System.out.println(s);
+                    }
+                }, new Runnable() {
 
-			@Override
-			public void run() {
-				System.out.println("プログラムが閉じられました。");
-			}
-		}, "F:\\東方萃夢想関係\\東方萃夢想\\th075Caster.exe", "-w");
+                    @Override
+                    public void run() {
+                        System.out.println("プログラムが閉じられました。");
+                    }
+                }, "F:\\東方萃夢想関係\\東方萃夢想\\th075Caster.exe", "-w");
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		while (true) {
-			String line = br.readLine();
-			if(line.equals("exit"))
-				break ;
-			caster.write(line);
-		}
-		caster.close();
-	}
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {
+            String line = br.readLine();
+            if (line.equals("exit"))
+                break;
+            caster.write(line);
+        }
+        caster.close();
+    }
 }

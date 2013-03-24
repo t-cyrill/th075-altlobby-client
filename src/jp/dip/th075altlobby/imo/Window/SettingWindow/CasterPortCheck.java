@@ -17,104 +17,121 @@ import java.util.concurrent.ScheduledExecutorService;
 import jp.dip.th075altlobby.imo.Resource.Resource;
 
 public class CasterPortCheck {
-	private final int port;
-	private final ResourceBundle resource = Resource.getBundle();
+    private final int port;
+    private final ResourceBundle resource = Resource.getBundle();
 
-	public CasterPortCheck(int port) {
-		this.port = port;
-	}
+    public CasterPortCheck(int port) {
+        this.port = port;
+    }
 
-	class UDPRecieveThreadRunnable implements Runnable {
-		private final BlockingQueue<Integer> queue;
-		public UDPRecieveThreadRunnable(BlockingQueue<Integer> queue) {
-			this.queue = queue;
-		}
+    class UDPRecieveThreadRunnable implements Runnable {
+        private final BlockingQueue<Integer> queue;
 
-		@Override
-		public void run() {
-			try {
-				final DatagramSocket udp = new DatagramSocket(port);
-				byte[] buf = new byte[2];
-				DatagramPacket p = new DatagramPacket(buf, 1);
+        public UDPRecieveThreadRunnable(BlockingQueue<Integer> queue) {
+            this.queue = queue;
+        }
 
-				ScheduledExecutorService exs = Executors.newScheduledThreadPool(2);
-				exs.submit(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							Thread.sleep(5000);
-							udp.close();
-						} catch (InterruptedException e) {
-							Thread.currentThread().interrupt();
-						}
-					}
-				});
-				exs.shutdown();
-				udp.receive(p);
+        @Override
+        public void run() {
+            try {
+                final DatagramSocket udp = new DatagramSocket(port);
+                byte[] buf = new byte[2];
+                DatagramPacket p = new DatagramPacket(buf, 1);
 
-				queue.add(0);
-			} catch (SocketException e) {
-				queue.add(1);
-			} catch (IOException e) {
-				queue.add(2);
-			}
-		}
-	}
+                ScheduledExecutorService exs = Executors
+                        .newScheduledThreadPool(2);
+                exs.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(5000);
+                            udp.close();
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                        }
+                    }
+                });
+                exs.shutdown();
+                udp.receive(p);
 
-	public void start() {
-		ExecutorService exs = Executors.newCachedThreadPool();
-		exs.execute(new Runnable() {
-			private final ProgressWindow window = new ProgressWindow();
-			@Override
-			public void run() {
-				final ScheduledExecutorService exs = Executors.newScheduledThreadPool(2);
-				BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(10);
-				exs.execute(new UDPRecieveThreadRunnable(queue));
+                queue.add(0);
+            } catch (SocketException e) {
+                queue.add(1);
+            } catch (IOException e) {
+                queue.add(2);
+            }
+        }
+    }
 
-				window.setVisible(true);
-				window.setLabelText(resource.getString("config.casterPort.msg1"));
-				window.setProgress(0 * 100 / (4-1));
+    public void start() {
+        ExecutorService exs = Executors.newCachedThreadPool();
+        exs.execute(new Runnable() {
+            private final ProgressWindow window = new ProgressWindow();
 
-				try {
-					Socket socket = new Socket("th075altlobby.dip.jp", 9557);
-					DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            @Override
+            public void run() {
+                final ScheduledExecutorService exs = Executors
+                        .newScheduledThreadPool(2);
+                BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(
+                        10);
+                exs.execute(new UDPRecieveThreadRunnable(queue));
 
-					window.setLabelText(resource.getString("config.casterPort.msg2"));
-					window.setProgress(1 * 100 / (4-1));
-					dos.writeByte(1);
-					dos.writeInt(port);
-					dos.close();
-					socket.close();
-				} catch (IOException e) {
-					queue.add(2);
-				}
+                window.setVisible(true);
+                window.setLabelText(resource
+                        .getString("config.casterPort.msg1"));
+                window.setProgress(0 * 100 / (4 - 1));
 
-				window.setLabelText(resource.getString("config.casterPort.msg3"));
-				window.setProgress(2 * 100 / (4-1));
+                try {
+                    Socket socket = new Socket("th075altlobby.dip.jp", 9557);
+                    DataOutputStream dos = new DataOutputStream(
+                            new BufferedOutputStream(socket.getOutputStream()));
 
-				int ret;
-				try {
-					ret = queue.take();
-					window.setProgress(3 * 100 / (4-1));
-					switch (ret) {
-					case 0:
-						window.setLabelText(resource.getString("config.casterPort.ok") + " : " + port);
-						break;
-					case 1:
-						window.setLabelText(resource.getString("config.casterPort.socketex") + " : " + port);
-						break;
-					case 2:
-						window.setLabelText(resource.getString("config.casterPort.ioex") + " : " + port);
-						break;
-					}
-					exs.shutdown();
-					Thread.sleep(2000);
-					window.dispose();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		exs.shutdown();
-	}
+                    window.setLabelText(resource
+                            .getString("config.casterPort.msg2"));
+                    window.setProgress(1 * 100 / (4 - 1));
+                    dos.writeByte(1);
+                    dos.writeInt(port);
+                    dos.close();
+                    socket.close();
+                } catch (IOException e) {
+                    queue.add(2);
+                }
+
+                window.setLabelText(resource
+                        .getString("config.casterPort.msg3"));
+                window.setProgress(2 * 100 / (4 - 1));
+
+                int ret;
+                try {
+                    ret = queue.take();
+                    window.setProgress(3 * 100 / (4 - 1));
+                    switch (ret) {
+                    case 0:
+                        window.setLabelText(resource
+                                .getString("config.casterPort.ok")
+                                + " : "
+                                + port);
+                        break;
+                    case 1:
+                        window.setLabelText(resource
+                                .getString("config.casterPort.socketex")
+                                + " : " + port);
+                        break;
+                    case 2:
+                        window.setLabelText(resource
+                                .getString("config.casterPort.ioex")
+                                + " : "
+                                + port);
+                        break;
+                    }
+                    exs.shutdown();
+                    Thread.sleep(2000);
+                    window.dispose();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        exs.shutdown();
+    }
 }

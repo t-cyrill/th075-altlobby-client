@@ -1,0 +1,3 @@
+[submodule "share"]
+	path = share
+	url = git://github.com/t-cyrill/th075-altlobby-common.git
